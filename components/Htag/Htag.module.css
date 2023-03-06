@@ -1,0 +1,17 @@
+.h1 {
+	font-size: 26px;
+	font-weight: 500;
+	line-height: calc(35 / 26 * 100%);
+}
+
+.h2 {
+	font-size: 22px;
+	font-weight: 500;
+	line-height: calc(30 / 22 * 100%);
+}
+
+.h3 {
+	font-size: 20px;
+	font-weight: 600;
+	line-height: calc(37 / 20 * 100%);
+}
