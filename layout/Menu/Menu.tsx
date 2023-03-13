@@ -1,43 +1,11 @@
 import { useContext } from 'react';
 import Link from 'next/link';
 import cn from 'classnames';
+import { useRouter } from 'next/router';
 import { AppContext } from '@/context/app.context';
 import { FirstLevelMenuItem, PageItem } from '@/interfaces/menu.interface';
-import { TopLevelCategory } from '@/interfaces/page.interface';
 import styles from './Menu.module.css';
-import CoursesIcon from './icons/courses.svg';
-import ServicesIcon from './icons/services.svg';
-import BooksIcon from './icons/books.svg';
-import ProductsIcon from './icons/products.svg';
-import { useRouter } from 'next/router';
-import { tr } from 'date-fns/locale';
-
-const firstLevelMenu: FirstLevelMenuItem[] = [
-  {
-    route: 'courses',
-    name: 'Курсы',
-    icon: <CoursesIcon />,
-    id: TopLevelCategory.Courses,
-  },
-  {
-    route: 'services',
-    name: 'Сервисы',
-    icon: <ServicesIcon />,
-    id: TopLevelCategory.Services,
-  },
-  {
-    route: 'books',
-    name: 'Книги',
-    icon: <BooksIcon />,
-    id: TopLevelCategory.Books,
-  },
-  {
-    route: 'products',
-    name: 'Продукты',
-    icon: <ProductsIcon />,
-    id: TopLevelCategory.Products,
-  },
-];
+import { firstLevelMenu } from '@/helpers/helpers';
 
 export const Menu = (): JSX.Element => {
   const { menu, firstCategory, setMenu } = useContext(AppContext);
@@ -80,7 +48,7 @@ export const Menu = (): JSX.Element => {
   };
   const buildSecondLevel = (menuItem: FirstLevelMenuItem) => {
     return (
-      <div className={styles.secondBlock}>
+      <div className={styles.secondBlock} key={menuItem.id}>
         {menu.map(m => {
           if (m.pages.map(p => p.alias).includes(router.asPath.split('/')[2])) {
             m.isOpened = true;
@@ -109,7 +77,7 @@ export const Menu = (): JSX.Element => {
   };
   const buildThirdLevel = (pages: PageItem[], route: string) => {
     return pages.map(p => (
-      <Link legacyBehavior={true} href={`/${route}/${p.alias}`}>
+      <Link key={p._id} legacyBehavior={true} href={`/${route}/${p.alias}`}>
         <a
           className={cn(styles.thirdLevel, {
             [styles.thirdLevelActive]: `/${route}/${p.alias}` === router.asPath,

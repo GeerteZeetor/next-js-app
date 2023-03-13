@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { GetStaticProps } from 'next';
-import { Button, Htag, P, Rating, Tag } from '@/components';
+import { Button, Htag, Input, P, Rating, Tag } from '@/components';
 import { withLayout } from '@/layout/Layout';
 import { MenuItem } from '@/interfaces/menu.interface';
+import { TextArea } from '@/components/TextArea/TextArea';
+import { Search } from '@/components/Search/Search';
 
 function Home({ menu }: HomeProps): JSX.Element {
   const [rating, setRating] = useState<number>(4);
@@ -30,6 +32,8 @@ function Home({ menu }: HomeProps): JSX.Element {
       </Tag>
       <Tag color="primary">Primary</Tag>
       <Rating rating={rating} isEditable={true} setRating={setRating} />
+      <Input placeholder="Тест" />
+      <TextArea placeholder="Текст отзыва" />
     </>
   );
 }

@@ -26,19 +26,27 @@
 }
 
 .ghost {
-	color: var(--black);
 	border: 1px solid var(--grey-light);
 	background: none;
-}
-
-.ghost:hover {
-	border: 1px solid var(--black);
 }
 
 .arrow {
 	display: inline-block;
 
 	margin-left: 10px;
+}
+
+.arrow svg {
+	transition: all 0.2s ease-in-out;
+}
+
+.ghost:hover {
+	color: var(--white);
+	background: var(--primary);
+}
+
+.ghost:hover svg {
+	fill: var(--white);
 }
 
 .down {

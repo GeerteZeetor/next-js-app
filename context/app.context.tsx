@@ -1,7 +1,6 @@
 import React, {
   createContext,
   PropsWithChildren,
-  ReactNode,
   useState,
 } from 'react';
 import { MenuItem } from '@/interfaces/menu.interface';
