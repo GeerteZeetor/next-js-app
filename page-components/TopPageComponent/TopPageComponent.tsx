@@ -2,7 +2,7 @@ import { TopPageComponentProps } from './TopPageComponent.props';
 import { Advantages, HhData, Htag, Product, Tag } from '@/components';
 import styles from './TopPageComponent.module.css';
 import { TopLevelCategory } from '@/interfaces/page.interface';
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { Sort } from '@/components/Sort/Sort';
 import { SortEnum } from '@/components/Sort/Sort.props';
 import { sortReducer } from '@/page-components/TopPageComponent/sort.reducer';
@@ -19,6 +19,11 @@ export const TopPageComponent = ({
       sort: SortEnum.Rating,
     }
   );
+
+  useEffect(() => {
+    dispatchSort({ type: 'reset', initialState: products });
+  }, [products]);
+
   const setSort = (sort: SortEnum) => {
     dispatchSort({ type: sort });
   };
